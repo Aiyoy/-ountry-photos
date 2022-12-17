@@ -1,0 +1,29 @@
+.header {
+  position: relative;
+  display: flex;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+}
+
+.burger {
+  position: absolute;
+  left: 12px;
+  height: 33px;
+  width: 30px;
+  background-image: url(../assets/menu.png);
+
+}
+.burger:hover {
+  filter: invert(49%) sepia(100%) saturate(1285%) hue-rotate(189deg) brightness(101%) contrast(101%);
+}
+.burger:active {
+  filter: invert(44%) sepia(95%) saturate(1965%) hue-rotate(183deg) brightness(93%) contrast(88%);
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 22px;
+}
