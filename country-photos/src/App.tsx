@@ -1,14 +1,15 @@
-import Header from './Header/Header';
+import 'element-theme-default';
 
-import { Button } from 'element-react';
+import Header from './Header/Header';
+import Content from './Content/Content';
 
 import './App.css';
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <div className="App">
       <Header></Header>
-      <Button type="primary">Primary Button</Button>
+      <Content></Content>
     </div>
   );
 }
