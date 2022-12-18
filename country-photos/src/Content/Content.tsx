@@ -2,9 +2,9 @@ import Aside from '../Aside/Aside';
 
 import './content.css'
 
-const Content = (): JSX.Element => {
+const Content = (props: {isAsideOpen: boolean}): JSX.Element => {
   return <div className='content'>
-    <Aside></Aside>
+    <Aside isAsideOpen={props.isAsideOpen}></Aside>
   </div>
 }
 

@@ -1,8 +1,8 @@
 import './header.css'
 
-function Header() {
+function Header(props: {onClick: () => void}) {
   return <header className='header'>
-    <div className='burger'></div>
+    <div className='burger' onClick={() => props.onClick()}></div>
     <div className='header-title'>Country photos</div>
   </header>
 }

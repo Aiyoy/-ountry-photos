@@ -8,7 +8,9 @@ type AsideState = {
   options: {
     children: string,
     label: string,
-  }
+  },
+  searchValue: React.SyntheticEvent<HTMLInputElement, Event> | undefined,
+  countryName: string;
 }
 type DataElem = {
   id: number;
@@ -20,9 +22,11 @@ type DataChildren = {
   label: string;
 };
 
-class Aside extends React.Component<{}, AsideState> {
+//когда буду получать страны от апишки поменять типы в соответствии с ответом апи
+//в дереве заменить nodeKey="id" на название страны?
+class Aside extends React.Component<{isAsideOpen: boolean}, AsideState> {
   tree: any;
-  constructor(props: {}) {
+  constructor(props: {isAsideOpen: boolean}) {
     super(props);
     this.state = {
       data: [{
@@ -56,18 +60,33 @@ class Aside extends React.Component<{}, AsideState> {
       options: {
         children: 'children',
         label: 'label'
-      }
+      },
+      searchValue: undefined,
+      countryName: '',
     }
+  }
+
+  getCheckedNodes(value: string) {
+    console.log(value);
+    this.setState((state) => {
+      return {...state, countryName: value} 
+    })
+  }
+
+  updateSearchValue(newValue: React.SyntheticEvent<HTMLInputElement, Event> | undefined) {
+    this.setState((state) => {
+      return {...state, searchValue: newValue}
+    })
   }
   
   render(): JSX.Element {
     const { data, options } = this.state
   
     return (
-      <div className='aside'>
+      <div className='aside' style={{display: this.props.isAsideOpen ? 'block' : 'none'}}>
         <div className='search-bar'>
-          <Input placeholder="filter" onChange={text => this.tree.filter(text)} />
-          <Button type="primary" icon="search"></Button>
+          <Input placeholder="filter" onChange={text => this.updateSearchValue(text)} />
+          <Button type="primary" icon="search" onClick={() => this.tree.filter(this.state.searchValue)}></Button>
         </div>
         <Tree
           ref={e=> this.tree = e}
@@ -75,32 +94,18 @@ class Aside extends React.Component<{}, AsideState> {
           data={data}
           options={options}
           nodeKey="id"
-          defaultExpandAll={true}
+          // defaultExpandAll={true}
+          highlightCurrent={true}
           filterNodeMethod={(value, data)=>{
             if (!value) return true;
             return data.label.indexOf(value) !== -1;
           }}
+          onNodeClicked={(el)=>this.getCheckedNodes(el.label)}
         />
       </div>
   
     )
   }
-  
-  // return <aside className='asidde'>
-  //   <Input placeholder='Filter by name' onBlur={(e) => setSearchValue(e!.target.value)}/>
-  //   <Button type="primary" icon="search"></Button>
-  //   <Tree
-  //     className="filter-tree"
-  //     data={state.data}
-  //     options={state.options}
-  //     nodeKey="id"
-  //     defaultExpandAll={true}
-  //     filterNodeMethod={(value, data)=>{
-  //       if (!value) return true;
-  //       return data.label.indexOf(value) !== -1;
-  //     }}
-  //   />
-  // </aside>
 }
 
 export default Aside;
