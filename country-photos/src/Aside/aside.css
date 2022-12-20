@@ -12,7 +12,13 @@
   padding: 10px;
 }
 
+/* TODO сделать многоточие в дереве */
 .el-tree {
   text-align: left;
   border: none;
+}
+.el-tree-node__label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
