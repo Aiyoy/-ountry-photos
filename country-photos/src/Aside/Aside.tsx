@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Input, Tree } from 'element-react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
+import countrySubject from '../CountrySubject';
+
 import './aside.css';
 
 const client = new ApolloClient({
@@ -22,46 +24,12 @@ const LIST_COUNTRIES = gql`
   }
 `;
 
-        // {
-        //   code: 'AF',
-        //   name: 'Africa',
-        //   countries: [{
-        //     code: 'AO',
-        //     name: 'Angola',
-        //   }]
-        // },
-        // {
-        //   code: 'AF',
-        //   name: 'Africa',
-        //   countries: [{
-        //     code: 'AO',
-        //     name: 'Angola',
-        //   }]
-        // }
-
 class Aside extends React.Component<{isAsideOpen: boolean}, AsideState> {
   tree: any;
   constructor(props: {isAsideOpen: boolean}) {
     super(props);
     this.state = {
-      data: [
-        {
-          code: 'AF',
-          name: 'Africa',
-          countries: [{
-            code: 'AO',
-            name: 'Angola',
-          }]
-        },
-        {
-          code: 'AF',
-          name: 'Africa',
-          countries: [{
-            code: 'AO',
-            name: 'Angola',
-          }]
-        }
-      ],
+      data: [],
       options: {
         children: 'countries',
         label: 'name'
@@ -85,6 +53,7 @@ class Aside extends React.Component<{isAsideOpen: boolean}, AsideState> {
     this.setState((state) => {
       return { countryName: [value, ...state.countryName] } 
     })
+    countrySubject.updateCountry(value);
   }
 
   updateSearchValue(newValue: React.SyntheticEvent<HTMLInputElement, Event> | undefined) {

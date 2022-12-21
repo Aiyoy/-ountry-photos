@@ -6,6 +6,7 @@
 .title-container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
   align-items: center;
 }
 .title-wrapper {
@@ -40,4 +41,10 @@
 }
 .el-breadcrumb__item:first-child .el-breadcrumb__item__inner {
   font-weight: 500;
+}
+
+.photos-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
 }
