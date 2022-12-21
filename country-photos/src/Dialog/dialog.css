@@ -1,0 +1,18 @@
+.el-dialog {
+  width: 435px;
+  min-height: 150px;
+  border-radius: 10px;
+}
+.el-dialog__headerbtn {
+  display: none;
+}
+.el-dialog__body {
+  padding: 0px 20px 25px 20px;
+  text-align: left;
+}
+.dialog-title {
+  margin-bottom: 15px;
+}
+.el-dialog__footer {
+  text-align: left;
+}

@@ -34,17 +34,20 @@ type PhotoInfType = {
   photographer_url: string,
   photographer_id: number,
   avg_color: string,
-  src: {
-    original: string,
-    large2x: string,
-    large: string,
-    medium: string,
-    small: string,
-    portrait: string,
-    landscape: string,
-    tiny: string,
-  },
+  src: ImgSrcType,
   liked: boolean,
   alt: string,
 }
+
+type ImgSrcType = {
+  original: string,
+  large2x?: string,
+  large?: string,
+  medium?: string,
+  small?: string,
+  portrait?: string,
+  landscape?: string,
+  tiny?: string,
+}
+
 type CountryObserver = (country: string) => void;
